@@ -28,7 +28,7 @@ for symbol in symbols:
     end = end_date.strftime('%Y-%m-%dT%H:%M:%SZ')
 
     try:
-        df = api.get_bars(symbol, TimeFrame.Hour, start=start_date.isoformat(), end=end_date.isoformat(), feed='iex').df
+        df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end, feed='iex').df
         df.index = pd.to_datetime(df.index)
         st.subheader(f" {symbol} – Last 5 Days (Hourly)")
         fig = go.Figure()
