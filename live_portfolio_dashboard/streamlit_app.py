@@ -29,8 +29,15 @@ for symbol in symbols:
 
     try:
         df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end ,feed='iex').df
-        df = df[df['symbol'] == symbol]
+        
 
+        st.write(df.head())  # Display the first few rows of the dataframe for debugging
+
+        # Check if 'symbol' column exists in the DataFrame
+        if 'symbol' not in df.columns:
+            st.error(f"'symbol' column is missing in the data for {symbol}. Please check the API response.")
+            continue
+        df = df[df['symbol'] == symbol]
         st.subheader(f"📊 {symbol} – Last 5 Days (Hourly)")
 
         fig = go.Figure()
