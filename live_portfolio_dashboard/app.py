@@ -5,8 +5,8 @@ from alpaca_trade_api.rest import REST, TimeFrame
 import datetime
 
 # Load secrets
-API_KEY = st.secrets["PKA24BVSZ7A1AKAZGK0D"]
-SECRET_KEY = st.secrets["ocQsMNujbeCFaTCwMvuApMqx9C6dlmAqEMFK2GW7"]
+API_KEY = st.secrets["ALPACA_API_KEY"]
+SECRET_KEY = st.secrets["ALPACA_SECRET_KEY"]
 BASE_URL = "https://paper-api.alpaca.markets/v2"
 
 # Initialize Alpaca API
