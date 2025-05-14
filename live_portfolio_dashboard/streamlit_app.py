@@ -12,7 +12,7 @@ BASE_URL = "https://paper-api.alpaca.markets/v2"
 # Initialize Alpaca API
 api = REST(API_KEY, SECRET_KEY, BASE_URL)
 
-st.title("📈 Live Market Data Dashboard")
+st.title("Live Market Data Dashboard")
 st.markdown("This app fetches real-time stock/ETF data using Alpaca API.")
 
 # Ticker input
@@ -23,8 +23,12 @@ for symbol in symbols:
     end_date = datetime.datetime.now()
     start_date = end_date - datetime.timedelta(days=5)
 
+    # 🛠️ Format datetime to RFC3339 string format
+    start = start_date.strftime('%Y-%m-%dT%H:%M:%SZ')
+    end = end_date.strftime('%Y-%m-%dT%H:%M:%SZ')
+
     try:
-        df = api.get_bars(symbol, TimeFrame.Hour, start=start_date.isoformat(), end=end_date.isoformat()).df
+        df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end).df
         df = df[df['symbol'] == symbol]
 
         st.subheader(f"📊 {symbol} – Last 5 Days (Hourly)")
@@ -36,3 +40,5 @@ for symbol in symbols:
 
     except Exception as e:
         st.error(f"Error fetching data for {symbol}: {e}")
+        
+st.footer("Dhruva Bisht 2025")
