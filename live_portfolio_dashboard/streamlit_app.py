@@ -28,7 +28,7 @@ for symbol in symbols:
     end = end_date.strftime('%Y-%m-%dT%H:%M:%SZ')
 
     try:
-        df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end).df
+        df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end ,feed='iex').df
         df = df[df['symbol'] == symbol]
 
         st.subheader(f"📊 {symbol} – Last 5 Days (Hourly)")
@@ -41,4 +41,7 @@ for symbol in symbols:
     except Exception as e:
         st.error(f"Error fetching data for {symbol}: {e}")
         
-st.footer("Dhruva Bisht 2025")
+# Footer
+st.markdown("---")
+st.markdown("<p style='text-align: center;'>© Dhruva Bisht 2025</p>", unsafe_allow_html=True)
+
