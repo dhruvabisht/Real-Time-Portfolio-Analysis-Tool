@@ -28,25 +28,16 @@ for symbol in symbols:
     end = end_date.strftime('%Y-%m-%dT%H:%M:%SZ')
 
     try:
-        df = api.get_bars(symbol, TimeFrame.Hour, start=start, end=end ,feed='iex').df
-        
-
-        st.write(df.head())  # Display the first few rows of the dataframe for debugging
-
-        # Check if 'symbol' column exists in the DataFrame
-        if 'symbol' not in df.columns:
-            st.error(f"'symbol' column is missing in the data for {symbol}. Please check the API response.")
-            continue
-        df = df[df['symbol'] == symbol]
-        st.subheader(f"📊 {symbol} – Last 5 Days (Hourly)")
-
+        df = api.get_bars(symbol, TimeFrame.Hour, start=start_date.isoformat(), end=end_date.isoformat(), feed='iex').df
+        df.index = pd.to_datetime(df.index)
+        st.subheader(f" {symbol} – Last 5 Days (Hourly)")
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=df.index, y=df['close'], mode='lines', name='Close Price'))
         fig.update_layout(title=f"{symbol} Price", xaxis_title="Time", yaxis_title="Price (USD)", height=400)
         st.plotly_chart(fig)
-
     except Exception as e:
         st.error(f"Error fetching data for {symbol}: {e}")
+
         
 # Footer
 st.markdown("---")
