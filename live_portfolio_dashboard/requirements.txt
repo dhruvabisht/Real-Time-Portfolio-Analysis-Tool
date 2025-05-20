@@ -1,23 +1,28 @@
 # Core Data Handling
-pandas==1.5.3
-numpy==1.23.5
+pandas>=1.5.3
+numpy>=1.23.5
 
 # ML Models
-scikit-learn==1.2.2
-joblib==1.2.0
+scikit-learn>=1.2.2
+joblib>=1.2.0
 
 # Forecasting
 prophet==1.1.4
 
 # Streamlit App
-streamlit==1.24.0
-plotly==5.15.0
+streamlit>=1.24.0
+plotly>=5.15.0
 
 # Alpaca API
-alpaca-trade-api==3.0.0
+alpaca-trade-api>=3.0.0
 
 # For datetime parsing
-python-dateutil==2.8.2
+python-dateutil>=2.8.2
 
 # Added from the code block
-yfinance
+yfinance>=0.2.36
+
+# Added from the code block
+setuptools>=65.5.1
+wheel>=0.38.4
+pyyaml>=6.0.1
